@@ -2,7 +2,7 @@
 
 const StockTable = ({ stocks }) => {
   return (
-    <table className="w-2/3 opacity-85  block h-[500px] table-collapse min-w-[500px] overflow-x-scroll sm:overflow-x-hidden  mx-auto rounded-xl drop-shadow-xl bg-white border-black p-2">
+    <table className="w-2/3 opacity-85  block h-[400px] table-collapse min-w-[500px] overflow-x-scroll snap-y-center sm:overflow-x-hidden  mx-auto rounded-xl drop-shadow-xl bg-white border-black p-2">
       <thead className=" p-2 sticky top-0   bg-white">
         <tr>
           <th className="text-left p-4 w-[10%]border-b border-gray-300">
