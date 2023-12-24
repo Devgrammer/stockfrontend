@@ -1,8 +1,11 @@
 // StockList.js
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import StockTable from "../components/StockTable";
 import axios from "axios";
+import { RxCross2 } from "react-icons/rx";
+import { AiOutlineStock } from "react-icons/ai";
+import { RiStockLine } from "react-icons/ri";
 
 const StockList = () => {
   const [stocks, setStocks] = useState([]);
@@ -43,35 +46,57 @@ const StockList = () => {
         HARE
       </div>
 
-      <div className="search-bar-wrapper text-slate-300 box-border w-fit mx-auto rounded-full border-gray-400 border-2 outline-2 hover:border-blue~-500">
+      <div className="search-bar-wrapper flex items-center justify-center text-slate-300 box-border w-fit mx-auto rounded-full border-gray-400 border-2 outline-2 hover:border-blue~-500">
         <input
           type="number"
           id="stockNumber"
           placeholder="Enter the number of stock you wish to display"
           value={numberOfStocks || ""}
           onChange={handleInputChange}
+          min={1}
+          max={50}
           className="w-96 h-12 p-4 rounded-lg bg-transparent border-0 outline-0 outline-slate-800"
         />
         <button
-          className="border-l-2 w-36 border-gray-400 p-4 box-border hover:font-bold delay-500  rounded-r-full"
+          className="border-0 w-12 h-12 flex justify-center items-center border-gray-400 p-4 box-border hover:font-bold delay-500  rounded-r-full"
+          onClick={() => setNumberOfStocks("")}
+        >
+          {numberOfStocks ? <RxCross2 size={28} /> : ""}
+        </button>
+        <button
+          className="border-l-2 w-36 h-12 border-gray-400 flex items-center justify-center p-4 box-border hover:font-bold delay-500  rounded-r-full"
           onClick={fetchStockData}
         >
           Fetch Stocks
         </button>
       </div>
-      {!isLoaded && numberOfStocks.length !== 0 && stocks.length > 0 ? (
-        <StockTable stocks={stocks} />
-      ) : (
-        <div
-          className={` w-2/4 mx-auto text-3xl ${
-            numberOfStocks > 0 && isLoaded && "animate-pulse"
-          } duration-500 font-semibold text-slate-300 hover:text-slate-100  cursor-pointer`}
-        >
-          {numberOfStocks > 0 && isLoaded
-            ? "Stocks are fetching..."
-            : "Nothing to show, enter how many stock you want to see?"}
-        </div>
-      )}
+
+      <div className="table-container">
+        {!isLoaded && numberOfStocks.length !== 0 && stocks.length > 0 ? (
+          <StockTable stocks={stocks} />
+        ) : (
+          <div
+            className={` w-2/4 mx-auto text-3xl ${
+              numberOfStocks > 0 && isLoaded && "animate-pulse"
+            } duration-500 font-semibold text-slate-300 hover:text-slate-100  cursor-pointer`}
+          >
+            {numberOfStocks > 0 && isLoaded ? (
+              "Stocks are fetching..."
+            ) : (
+              <div className="mx-auto flex flex-col justify-center items-center">
+                <div className="empty-icon flex  ">
+                  <RiStockLine size={80} />
+                  <AiOutlineStock size={80} />
+                  <RiStockLine size={80} />
+                </div>
+                <div className="empty-msg">
+                  Nothing to show, enter how many stock you want to see?
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
