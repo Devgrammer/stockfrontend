@@ -5,10 +5,10 @@ const StockTable = ({ stocks }) => {
     <table className="w-2/3 opacity-85  block h-[400px] table-collapse min-w-[500px] overflow-x-scroll snap-y-center sm:overflow-x-hidden  mx-auto rounded-xl drop-shadow-xl bg-white border-black p-2">
       <thead className=" p-2 sticky top-0   bg-white">
         <tr>
-          <th className="text-left p-4 w-[10%]border-b border-gray-300">
+          <th className="text-left p-4 w-[10%] border-b border-gray-300">
             S.No.
           </th>
-          <th className="text-left p-4 w-[10%]border-b border-gray-300">
+          <th className="text-left p-4 w-[10%] border-b border-gray-300">
             Ticker
           </th>
           <th className="text-left p-4 w-[70%] border-b border-gray-300">
