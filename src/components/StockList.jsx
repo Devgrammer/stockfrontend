@@ -7,10 +7,25 @@ import { RxCross2 } from "react-icons/rx";
 import { AiOutlineStock } from "react-icons/ai";
 import { RiStockLine } from "react-icons/ri";
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const StockList = () => {
   const [stocks, setStocks] = useState([]);
   const [numberOfStocks, setNumberOfStocks] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  
 
   const fetchStockData = async () => {
     try {
@@ -26,6 +41,9 @@ const StockList = () => {
       console.error("Error fetching stock data:", error);
     }
   };
+
+
+ 
 
   const handleInputChange = (e) => {
     const value = parseInt(e.target.value);
@@ -73,7 +91,12 @@ const StockList = () => {
 
       <div className="table-container">
         {!isLoaded && numberOfStocks.length !== 0 && stocks.length > 0 ? (
-          <StockTable stocks={stocks} />
+          <>
+            <StockTable stocks={stocks} />
+            <div className="fetch-highlight text-slate-300 text-md m-4">{`Fetched ${stocks.length} of ${
+              stocks.length
+            } ${stocks.length > 0 ? "stocks" : "stock"}`}</div>
+          </>
         ) : (
           <div
             className={` w-2/4 mx-auto text-3xl ${
