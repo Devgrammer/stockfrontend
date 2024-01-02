@@ -6,6 +6,7 @@ import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
 import { AiOutlineStock } from "react-icons/ai";
 import { RiStockLine } from "react-icons/ri";
+import { VscLoading } from "react-icons/vsc";
 
 
 
@@ -104,7 +105,13 @@ const StockList = () => {
             } duration-500 font-semibold text-slate-300 hover:text-slate-100  cursor-pointer`}
           >
             {numberOfStocks > 0 && isLoaded ? (
-              "Stocks are fetching..."
+              <div className="flex flex-col items-center  justify-center gap-y-12">
+                {" "}
+                <div className="icon ">
+                  <VscLoading className="animate-spin" size={80} />
+                </div>
+                <div className="content">Stocks are fetching...</div>
+              </div>
             ) : (
               <div className="mx-auto flex flex-col justify-center items-center">
                 <div className="empty-icon flex  ">
